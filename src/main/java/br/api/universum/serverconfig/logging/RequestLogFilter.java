@@ -4,7 +4,10 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
+
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -27,14 +30,17 @@ public class RequestLogFilter extends OncePerRequestFilter {
     private static final Logger log = LoggerFactory.getLogger("request");
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(
+            @NonNull HttpServletRequest request,
+            @NonNull HttpServletResponse response,
+            FilterChain chain) throws ServletException, IOException {
         long startedAt = System.nanoTime();
         try {
             chain.doFilter(request, response);
         } finally {
             long durationMs = (System.nanoTime() - startedAt) / 1_000_000;
-            log.info("method={} path={} status={} durationMs={} remote={} xForwardedFor={} host={} userAgent=\"{}\"",
+            log.info(
+                    "method={} path={} status={} durationMs={} remote={} xForwardedFor={} host={} userAgent=\"{}\"",
                     request.getMethod(),
                     request.getRequestURI(),
                     response.getStatus(),
@@ -42,7 +48,8 @@ public class RequestLogFilter extends OncePerRequestFilter {
                     request.getRemoteAddr(),
                     orDash(request.getHeader("X-Forwarded-For")),
                     orDash(request.getHeader("Host")),
-                    orDash(request.getHeader("User-Agent")));
+                    orDash(request.getHeader("User-Agent"))
+            );
         }
     }
 
