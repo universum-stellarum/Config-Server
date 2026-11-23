@@ -73,7 +73,9 @@ finance-service-prod.yml
 Os exemplos usam valores fictícios, URLs `.invalid` e comentários explicando onde inserir
 senhas criptografadas. Não contêm segredos reais nem ciphertext utilizável.
 O Polaris é o Spring Cloud Gateway e seus exemplos não incluem datasource próprio.
-Substitua os parâmetros conforme seu laboratório e faça commit/push na branch `main`.
+Substitua os parâmetros conforme seu laboratório e faça commit/push na branch do ambiente: `dev` ou `prod`.
+Cada serviço pede a branch com o mesmo nome do seu perfil (`spring.cloud.config.label`),
+então `/identity/dev/dev` lê a branch `dev` e `/identity/prod/prod` lê a `prod`.
 
 `application.yml` tem propriedades comuns e não sensíveis.
 Para `/identity/dev`, o Spring combina o global com `identity-dev.yml`;
@@ -118,7 +120,7 @@ Copie `.env.example` para `.env` local ou preencha Environment no Dokploy.
 | `CONFIG_ADMIN_USERNAME` | Administrador dos endpoints de criptografia |
 | `CONFIG_ADMIN_PASSWORD` | Senha administrativa |
 | `SERVER_PORT` | Porta interna e publicada; padrão 8888 |
-| `CONFIG_GIT_DEFAULT_LABEL` | Branch padrão; padrão `main`, sem fallback para `master` |
+| `CONFIG_GIT_DEFAULT_LABEL` | Branch usada quando o cliente não informa label; use `dev`. Sem fallback para `master` |
 
 `ENCRYPT_KEY` é reconhecida diretamente pelo binding oficial como `encrypt.key`.
 Não é preciso duplicar a chave em YAML ou criar uma classe Java.
