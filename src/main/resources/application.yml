@@ -1,6 +1,6 @@
 spring:
   application:
-    name: aldebaran
+    name: config-server
 
   security:
     user:
@@ -26,15 +26,15 @@ spring:
           default-label: ${CONFIG_GIT_DEFAULT_LABEL}
           try-master-branch: false
           clone-on-start: true
-          basedir: ${java.io.tmpdir}/aldebaran-config-git
+          basedir: ${java.io.tmpdir}/config-server-git
 
   mvc:
     log-request-details: false
 
   web:
     error:
-      include-message: never
-      include-stacktrace: never
+      include-message: always
+      include-stacktrace: always
 
 universum:
   request-log:

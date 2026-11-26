@@ -1,4 +1,4 @@
-package br.api.universum.serverconfig.logging;
+package br.api.universum.configserver.logging;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

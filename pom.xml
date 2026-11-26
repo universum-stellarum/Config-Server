@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>br.api.universum</groupId>
-    <artifactId>server-config</artifactId>
+    <artifactId>config-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Aldebaran</name>
     <description>Spring Cloud Config Server com backend Git e criptografia nativa</description>

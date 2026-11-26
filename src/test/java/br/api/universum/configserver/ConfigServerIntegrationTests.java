@@ -1,4 +1,4 @@
-package br.api.universum.serverconfig;
+package br.api.universum.configserver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.net.ServerSocket;

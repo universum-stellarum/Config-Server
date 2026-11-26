@@ -37,8 +37,8 @@ Toda a escolha de arquivos, precedência e descriptografia fica com o Spring Clo
 O código de produção tem somente:
 
 ```text
-src/main/java/br/api/universum/serverconfig/
-├── ServerConfigApplication.java
+src/main/java/br/api/universum/configserver/
+├── ConfigServerApplication.java
 └── config/SecurityConfiguration.java
 src/main/resources/application.yml
 examples/config-repo/             # referência para o outro repositório; não vai para a imagem final
@@ -166,7 +166,7 @@ docker compose up -d --build
 docker compose ps
 ```
 
-Para construir apenas a imagem: `docker build -t aldebaran:local .`.
+Para construir apenas a imagem: `docker build -t config-server:local .`.
 
 O mapeamento de porta usa `host_ip: ${CONFIG_SERVER_BIND_IP}`, sem fallback para todas as interfaces.
 Se o IP não existir no host, corrija a interface antes de continuar; não troque por `0.0.0.0`.
@@ -174,7 +174,7 @@ Mantenha o serviço Tailscale ativo antes de iniciar o container, inclusive apó
 
 A imagem final usa JRE 21 e UID/GID 10001. O Compose mantém restart policy, health check,
 filesystem somente leitura, capabilities removidas e ausência de privilégios.
-O clone/cache Git fica em `/tmp/aldebaran-config-git`, dentro do tmpfs gravável.
+O clone/cache Git fica em `/tmp/config-server-git`, dentro do tmpfs gravável.
 O cache é descartável; recriar o container provoca um novo clone.
 Os exemplos são usados somente no estágio de build/testes, não copiados para a imagem final.
 Não é necessário compartilhar a rede Docker dos microserviços: eles usarão o IP privado do host.
@@ -331,7 +331,7 @@ O health check usa o endpoint oficial e não garante a validade de todas as prop
 
 ```bash
 ./mvnw clean verify
-docker build -t aldebaran:local .
+docker build -t config-server:local .
 ```
 
 No Windows, use `.\mvnw.cmd clean verify`.

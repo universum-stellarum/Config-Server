@@ -1,6 +1,6 @@
 services:
   config-server:
-    image: aldebaran:local
+    image: config-server:local
     build:
       context: .
     restart: unless-stopped

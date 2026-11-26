@@ -1,4 +1,4 @@
-package br.api.universum.serverconfig;
+package br.api.universum.configserver;
 
 import java.io.IOException;
 import java.net.InetAddress;
