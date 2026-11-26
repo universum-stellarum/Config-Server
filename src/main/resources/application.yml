@@ -30,11 +30,12 @@ spring:
 
   mvc:
     log-request-details: false
+    log-resolved-exception: true
 
   web:
     error:
-      include-message: always
-      include-stacktrace: always
+      include-message: never
+      include-stacktrace: never
 
 universum:
   request-log:
